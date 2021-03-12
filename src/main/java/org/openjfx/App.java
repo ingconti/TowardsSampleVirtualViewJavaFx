@@ -21,14 +21,14 @@ public class App extends Application {
         launch(args);
     }
 
+    private View view = new View();
+
     @Override
     public void start(Stage primaryStage) {
+//        Label label = new Label("My Label");
+//        Scene scene = new Scene(label, 200, 100);
 
-        Label label = new Label("My Label");
-        Scene scene = new Scene(label, 200, 100);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(this.view.getScene());
         primaryStage.show();
     }
-
-
 }
