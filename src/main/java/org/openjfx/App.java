@@ -1,15 +1,14 @@
 package org.openjfx;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.util.Observable;
 import java.util.Observer;
 
-// some ideas from:
-// https://docs.oracle.com/javafx/2/get_started/hello_world.htm
-
-
+// do arrivr to Virtual... but a lot of code is here...
 
 public class App extends Application implements Observer {
 
@@ -18,26 +17,27 @@ public class App extends Application implements Observer {
     }
 
     private View view = new View(this);
-    private GameModel model = new GameModel();
+    // NOO ! private GameModel model = new GameModel(this);
+    private GameModel model = new GameModel(view);
 
-    public void update(Observable obj, Object arg) {
-        CartesianPoint p = (CartesianPoint)arg;
-        System.out.println("got click:");
-        System.out.println(p.x);
-        System.out.println(p.y);
-
-        // call model:
-        model.clicked(p);
-        //...
-    }
     @Override
     public void start(Stage primaryStage) {
-//        Label label = new Label("My Label");
-//        Scene scene = new Scene(label, 200, 100);
+        primaryStage.setTitle("Drawing Operations Test");
 
         primaryStage.setScene(this.view.getScene());
         primaryStage.show();
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
 
+        //System.out.println("got it!!");
+        CartesianPoint p = (CartesianPoint) arg;
+        System.out.println(p.x);
+        System.out.println(p.y);
+
+        // tell to model:
+        this.model.checkPoint(p);
+
+    }
 }
