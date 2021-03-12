@@ -1,11 +1,11 @@
 package org.openjfx;
 
 public class CartesianPoint {
-    int x;
-    int y;
+    double x;
+    double y;
 
 
-    public CartesianPoint(int x, int y){
+    public CartesianPoint(double x, double y){
         this.x = x;
         this.y = y;
     }

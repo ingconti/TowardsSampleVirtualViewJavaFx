@@ -3,9 +3,9 @@ package org.openjfx;
 public class CartesianCircle {
 
     private CartesianPoint center;
-    private int radius;
+    private double radius;
 
-     CartesianCircle(int x, int y, int radius){
+     CartesianCircle(double x, double y, double radius){
         this.center = new CartesianPoint(x,y);
         this.radius = radius;
     }
