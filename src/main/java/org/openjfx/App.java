@@ -1,28 +1,35 @@
 package org.openjfx;
 
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
+
+import java.util.Observable;
+import java.util.Observer;
 
 // some ideas from:
 // https://docs.oracle.com/javafx/2/get_started/hello_world.htm
 
 
 
-public class App extends Application {
+public class App extends Application implements Observer {
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    private View view = new View();
+    private View view = new View(this);
+    private GameModel model = new GameModel();
 
+    public void update(Observable obj, Object arg) {
+        CartesianPoint p = (CartesianPoint)arg;
+        System.out.println("got click:");
+        System.out.println(p.x);
+        System.out.println(p.y);
+
+        // call model:
+        model.clicked(p);
+        //...
+    }
     @Override
     public void start(Stage primaryStage) {
 //        Label label = new Label("My Label");
@@ -31,4 +38,6 @@ public class App extends Application {
         primaryStage.setScene(this.view.getScene());
         primaryStage.show();
     }
+
+
 }
