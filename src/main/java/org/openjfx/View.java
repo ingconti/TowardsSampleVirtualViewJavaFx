@@ -4,7 +4,6 @@ package org.openjfx;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.skin.TableHeaderRow;
 import javafx.scene.input.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +11,7 @@ import java.util.Observer;
 
 public class View extends Observable implements Observer {
 
-    private Label label;
+    private final Label label;
     private Scene scene;
 
     void displayMessage(String msg){
@@ -27,18 +26,15 @@ public class View extends Observable implements Observer {
     }
 
     private void addClickManagement(){
-        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                double x = e.getX();
-                double y = e.getY();
-                System.out.println("clicked");
+        EventHandler<MouseEvent> eventHandler = e -> {
+            double x = e.getX();
+            double y = e.getY();
+            System.out.println("clicked");
 
-                setChanged();   // very important!
+            setChanged();   // very important!
 
-                CartesianPoint p = new CartesianPoint(x,y);
-                notifyObservers(p);
-            }
+            CartesianPoint p = new CartesianPoint(x, y);
+            notifyObservers(p);
         };
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
     }

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.util.Observable;
 import java.util.Observer;
 
-// do arrivr to Virtual... but a lot of code is here...
+// do arrive to Virtual... but a lot of code is here...
 
 public class App extends Application implements Observer {
 
