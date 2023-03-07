@@ -20,7 +20,7 @@ public class View extends Observable implements Observer {
 
     public View(Observer obs){
       label = new Label("My Label");
-      scene = new Scene(label, 200, 100);
+      scene = new Scene(label, 500, 600);
       addClickManagement();
       addObserver(obs);
     }
